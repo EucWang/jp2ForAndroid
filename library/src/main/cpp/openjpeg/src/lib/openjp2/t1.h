@@ -50,6 +50,7 @@ in T1.C are used by some function in TCD.C.
 /*@{*/
 
 /* ----------------------------------------------------------------------- */
+#include "mqc.h"
 #define T1_NMSEDEC_BITS 7
 
 #define T1_NUMCTXS_ZC  9

@@ -37,6 +37,11 @@
 
 #ifndef OPJ_DWT_H
 #define OPJ_DWT_H
+#include "openjpeg.h"
+#include "opj_includes.h"
+//#include "tcd.h"
+typedef struct opj_tcd_tilecomp opj_tcd_tilecomp_t;
+
 /**
 @file dwt.h
 @brief Implementation of a discrete wavelet transform (DWT)

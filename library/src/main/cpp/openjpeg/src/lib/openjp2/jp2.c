@@ -37,7 +37,13 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-#include "opj_includes.h"
+#include "jp2.h"
+#include "cio.h"
+#include <assert.h>
+#include "opj_malloc.h"
+#include "function_list.h"
+#include "j2k.h"
+#include <string.h>
 
 /** @defgroup JP2 JP2 - JPEG-2000 file format reader/writer */
 /*@{*/

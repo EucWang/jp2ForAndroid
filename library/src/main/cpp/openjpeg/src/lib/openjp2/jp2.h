@@ -40,6 +40,11 @@
 @brief The JPEG-2000 file format Reader/Writer (JP2)
 
 */
+#include "openjpeg.h"
+
+typedef struct opj_j2k opj_j2k_t;
+typedef struct opj_event_mgr opj_event_mgr_t;
+typedef struct opj_stream_private opj_stream_private_t;
 
 /** @defgroup JP2 JP2 - JPEG-2000 file format reader/writer */
 /*@{*/

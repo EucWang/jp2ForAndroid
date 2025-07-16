@@ -36,6 +36,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include "mqc.h"
 #include "opj_includes.h"
 
 #include <assert.h>

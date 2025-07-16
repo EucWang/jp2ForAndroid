@@ -40,6 +40,7 @@
 #define OPJ_MQC_H
 
 #include "opj_common.h"
+#include "openjpeg.h"
 
 /**
 @file mqc.h

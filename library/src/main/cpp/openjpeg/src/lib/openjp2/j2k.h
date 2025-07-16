@@ -50,7 +50,13 @@ The functions in J2K.C have for goal to read/write the several parts of the code
 
 /** @defgroup J2K J2K - JPEG-2000 codestream reader/writer */
 /*@{*/
+#include "openjpeg.h"
+#include "thread.h"
+typedef struct opj_procedure_list opj_procedure_list_t;
+typedef struct opj_event_mgr opj_event_mgr_t;
+typedef struct opj_stream_private opj_stream_private_t;
 
+typedef unsigned int OPJ_BITFIELD;
 #define J2K_CP_CSTY_PRT 0x01
 #define J2K_CP_CSTY_SOP 0x02
 #define J2K_CP_CSTY_EPH 0x04
@@ -406,7 +412,7 @@ typedef struct opj_cp {
     /** enables writing of EPB, in case of activated JPWL */
     OPJ_BOOL epb_on;
     /** enables writing of ESD, in case of activated JPWL */
-    OPJ_BOOL esd_on;
+    OPJ_BOOL esd_on;O
     /** enables writing of informative techniques of ESD, in case of activated JPWL */
     OPJ_BOOL info_on;
     /** enables writing of RED, in case of activated JPWL */
@@ -594,8 +600,7 @@ typedef struct opj_j2k {
 
     /** Set to 1 by the decoder initialization if OPJ_DPARAMETERS_DUMP_FLAG is set */
     unsigned int dump_state;
-}
-opj_j2k_t;
+} opj_j2k_t;
 
 
 

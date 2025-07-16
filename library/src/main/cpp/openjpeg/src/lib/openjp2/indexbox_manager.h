@@ -35,10 +35,13 @@
 
 #ifndef  INDEXBOX_MANAGER_H_
 # define INDEXBOX_MANAGER_H_
-
 #include "openjpeg.h"
-#include "j2k.h" /* needed to use jp2.h */
-#include "jp2.h"
+typedef struct opj_jp2_box opj_jp2_box_t;
+typedef struct opj_stream_private opj_stream_private_t;
+typedef struct opj_event_mgr opj_event_mgr_t;
+typedef struct opj_codestream_info opj_codestream_info_t;
+
+//#include "j2k.h" /* needed to use jp2.h */
 
 #define JPIP_CIDX 0x63696478   /* Codestream index                */
 #define JPIP_CPTR 0x63707472   /* Codestream Finder Box           */

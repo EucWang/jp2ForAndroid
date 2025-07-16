@@ -41,8 +41,15 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include "j2k.h"
+#include "tcd.h"
+#include "openjpeg.h"
+#include "cio.h"
+#include <assert.h>
+#include "opj_malloc.h"
+#include "opj_intmath.h"
 #include "opj_includes.h"
-
+#include <string.h>
 /** @defgroup J2K J2K - JPEG-2000 codestream reader/writer */
 /*@{*/
 

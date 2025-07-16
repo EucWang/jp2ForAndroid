@@ -38,6 +38,7 @@
 
 #define OPJ_UINT32_SEMANTICALLY_BUT_INT32 OPJ_UINT32
 
+#include "pi.h"
 #include "opj_includes.h"
 
 /** @defgroup PI PI - Implementation of a packet iterator */

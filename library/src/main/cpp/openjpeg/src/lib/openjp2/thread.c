@@ -43,6 +43,7 @@
 #include <windows.h>
 #include <process.h>
 
+#include "thread.h"
 #include "opj_includes.h"
 
 OPJ_BOOL OPJ_CALLCONV opj_has_thread_support(void)
@@ -62,9 +63,9 @@ int OPJ_CALLCONV opj_get_num_cpus(void)
     return (int)dwNum;
 }
 
-struct opj_mutex_t {
+typedef struct opj_mutex {
     CRITICAL_SECTION cs;
-};
+}  opj_mutex_t;
 
 opj_mutex_t* opj_mutex_create(void)
 {
@@ -95,16 +96,15 @@ void opj_mutex_destroy(opj_mutex_t* mutex)
     opj_free(mutex);
 }
 
-struct opj_cond_waiter_list_t {
+typedef struct opj_cond_waiter_list {
     HANDLE hEvent;
     struct opj_cond_waiter_list_t* next;
-};
-typedef struct opj_cond_waiter_list_t opj_cond_waiter_list_t;
+} opj_cond_waiter_list_t;
 
-struct opj_cond_t {
+typedef struct opj_cond {
     opj_mutex_t             *internal_mutex;
     opj_cond_waiter_list_t  *waiter_list;
-};
+}opj_cond_t;
 
 static DWORD TLSKey = 0;
 static volatile LONG inTLSLockedSection = 0;
@@ -215,11 +215,11 @@ void opj_cond_destroy(opj_cond_t* cond)
     opj_free(cond);
 }
 
-struct opj_thread_t {
+typedef struct opj_thread {
     opj_thread_fn thread_fn;
     void* user_data;
     HANDLE hThread;
-};
+} opj_thread_t;
 
 unsigned int __stdcall opj_thread_callback_adapter(void *info)
 {
@@ -306,9 +306,9 @@ int OPJ_CALLCONV opj_get_num_cpus(void)
 #endif
 }
 
-struct opj_mutex_t {
+typedef struct opj_mutex {
     pthread_mutex_t mutex;
-};
+} opj_mutex_t;
 
 opj_mutex_t* opj_mutex_create(void)
 {
@@ -341,9 +341,9 @@ void opj_mutex_destroy(opj_mutex_t* mutex)
     opj_free(mutex);
 }
 
-struct opj_cond_t {
+typedef struct opj_cond {
     pthread_cond_t cond;
-};
+} opj_cond;
 
 opj_cond_t* opj_cond_create(void)
 {
@@ -380,11 +380,11 @@ void opj_cond_destroy(opj_cond_t* cond)
 }
 
 
-struct opj_thread_t {
+typedef struct opj_thread {
     opj_thread_fn thread_fn;
     void* user_data;
     pthread_t thread;
-};
+} opj_thread_t;
 
 static void* opj_thread_callback_adapter(void* info)
 {
@@ -429,6 +429,8 @@ void opj_thread_join(opj_thread_t* thread)
 /* Stub implementation */
 
 #include "opj_includes.h"
+#include "thread.h"
+#include "opj_malloc.h"
 
 OPJ_BOOL OPJ_CALLCONV opj_has_thread_support(void)
 {
@@ -495,16 +497,16 @@ void opj_thread_join(opj_thread_t* thread)
 
 #endif
 
-typedef struct {
+typedef struct opj_tls_key_val {
     int key;
     void* value;
     opj_tls_free_func opj_free_func;
 } opj_tls_key_val_t;
 
-struct opj_tls_t {
+typedef struct opj_tls {
     opj_tls_key_val_t* key_val;
     int                key_val_count;
-};
+} opj_tls_t;
 
 static opj_tls_t* opj_tls_new(void)
 {
@@ -570,12 +572,13 @@ OPJ_BOOL opj_tls_set(opj_tls_t* tls, int key, void* value,
 }
 
 
-typedef struct {
+typedef struct opj_worker_thread_job {
     opj_job_fn          job_fn;
     void               *user_data;
 } opj_worker_thread_job_t;
 
-typedef struct {
+
+typedef struct opj_worker_thread {
     opj_thread_pool_t   *tp;
     opj_thread_t        *thread;
     int                  marked_as_waiting;
@@ -590,19 +593,17 @@ typedef enum {
     OPJWTS_ERROR
 } opj_worker_thread_state;
 
-struct opj_job_list_t {
+typedef struct opj_job_list {
     opj_worker_thread_job_t* job;
-    struct opj_job_list_t* next;
-};
-typedef struct opj_job_list_t opj_job_list_t;
+    struct opj_job_list* next;
+} opj_job_list_t;
 
-struct opj_worker_thread_list_t {
+typedef struct opj_worker_thread_list {
     opj_worker_thread_t* worker_thread;
-    struct opj_worker_thread_list_t* next;
-};
-typedef struct opj_worker_thread_list_t opj_worker_thread_list_t;
+    struct opj_worker_thread_list* next;
+} opj_worker_thread_list_t;
 
-struct opj_thread_pool_t {
+typedef struct opj_thread_pool {
     opj_worker_thread_t*             worker_threads;
     int                              worker_threads_count;
     opj_cond_t*                      cond;
@@ -614,7 +615,7 @@ struct opj_thread_pool_t {
     int                              waiting_worker_thread_count;
     opj_tls_t*                       tls;
     int                              signaling_threshold;
-};
+} opj_thread_pool_t;
 
 static OPJ_BOOL opj_thread_pool_setup(opj_thread_pool_t* tp, int num_threads);
 static opj_worker_thread_job_t* opj_thread_pool_get_next_job(
@@ -622,36 +623,6 @@ static opj_worker_thread_job_t* opj_thread_pool_get_next_job(
     opj_worker_thread_t* worker_thread,
     OPJ_BOOL signal_job_finished);
 
-opj_thread_pool_t* opj_thread_pool_create(int num_threads)
-{
-    opj_thread_pool_t* tp;
-
-    tp = (opj_thread_pool_t*) opj_calloc(1, sizeof(opj_thread_pool_t));
-    if (!tp) {
-        return NULL;
-    }
-    tp->state = OPJWTS_OK;
-
-    if (num_threads <= 0) {
-        tp->tls = opj_tls_new();
-        if (!tp->tls) {
-            opj_free(tp);
-            tp = NULL;
-        }
-        return tp;
-    }
-
-    tp->mutex = opj_mutex_create();
-    if (!tp->mutex) {
-        opj_free(tp);
-        return NULL;
-    }
-    if (!opj_thread_pool_setup(tp, num_threads)) {
-        opj_thread_pool_destroy(tp);
-        return NULL;
-    }
-    return tp;
-}
 
 static void opj_worker_thread_function(void* user_data)
 {
@@ -951,4 +922,35 @@ void opj_thread_pool_destroy(opj_thread_pool_t* tp)
     opj_mutex_destroy(tp->mutex);
     opj_tls_destroy(tp->tls);
     opj_free(tp);
+}
+
+opj_thread_pool_t* opj_thread_pool_create(int num_threads)
+{
+    opj_thread_pool_t* tp;
+
+    tp = (opj_thread_pool_t*) opj_calloc(1, sizeof(opj_thread_pool_t));
+    if (!tp) {
+        return NULL;
+    }
+    tp->state = OPJWTS_OK;
+
+    if (num_threads <= 0) {
+        tp->tls = opj_tls_new();
+        if (!tp->tls) {
+            opj_free(tp);
+            tp = NULL;
+        }
+        return tp;
+    }
+
+    tp->mutex = opj_mutex_create();
+    if (!tp->mutex) {
+        opj_free(tp);
+        return NULL;
+    }
+    if (!opj_thread_pool_setup(tp, num_threads)) {
+        opj_thread_pool_destroy(tp);
+        return NULL;
+    }
+    return tp;
 }

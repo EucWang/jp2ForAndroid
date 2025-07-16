@@ -30,6 +30,7 @@
  */
 #ifndef OPJ_IMAGE_H
 #define OPJ_IMAGE_H
+#include "openjpeg.h"
 /**
 @file image.h
 @brief Implementation of operations on images (IMAGE)

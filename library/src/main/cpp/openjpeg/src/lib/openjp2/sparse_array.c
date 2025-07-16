@@ -29,6 +29,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include "sparse_array.h"
 #include "opj_includes.h"
 
 

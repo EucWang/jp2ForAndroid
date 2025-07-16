@@ -29,7 +29,9 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include "cidx_manager.h"
 #include "opj_includes.h"
+#include "indexbox_manager.h"
 
 
 /*

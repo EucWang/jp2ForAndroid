@@ -30,6 +30,9 @@
  */
 #ifndef OPJ_CLOCK_H
 #define OPJ_CLOCK_H
+
+#include "openjpeg.h"
+
 /**
 @file opj_clock.h
 @brief Internal function for timing

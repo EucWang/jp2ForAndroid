@@ -35,6 +35,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include "bio.h"
 #include "opj_includes.h"
 
 /** @defgroup BIO BIO - Individual bit input-output stream */

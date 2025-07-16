@@ -38,6 +38,7 @@
  * since they can react to macro defined there
  */
 #include "opj_config_private.h"
+//#include "indexbox_manager.h"
 
 /*
  ==========================================================
@@ -260,6 +261,5 @@ typedef unsigned int OPJ_BITFIELD;
 
 /* V2 */
 #include "opj_codec.h"
-
 
 #endif /* OPJ_INCLUDES_H */

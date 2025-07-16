@@ -34,7 +34,8 @@
 /**
 @file opj_codec.h
 */
-
+#include "event.h"
+#include "cio.h"
 
 /**
  * Main codec handler used for compression or decompression.
@@ -168,8 +169,7 @@ typedef struct opj_codec_private {
 
     /** Set number of threads */
     OPJ_BOOL(*opj_set_threads)(void * p_codec, OPJ_UINT32 num_threads);
-}
-opj_codec_private_t;
+} opj_codec_private_t;
 
 
 #endif /* OPJ_CODEC_H */

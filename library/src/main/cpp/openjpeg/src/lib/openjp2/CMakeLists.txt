@@ -57,7 +57,7 @@ set(OPENJPEG_SRCS
   ${CMAKE_CURRENT_SOURCE_DIR}/sparse_array.c
   ${CMAKE_CURRENT_SOURCE_DIR}/sparse_array.h
 )
-if(BUILD_JPIP)
+#if(BUILD_JPIP)
   add_definitions(-DUSE_JPIP)
   set(OPENJPEG_SRCS
     ${OPENJPEG_SRCS}
@@ -69,7 +69,7 @@ if(BUILD_JPIP)
     ${CMAKE_CURRENT_SOURCE_DIR}/tpix_manager.c
     ${CMAKE_CURRENT_SOURCE_DIR}/indexbox_manager.h
   )
-endif()
+#endif()
 
 option(OPJ_DISABLE_TPSOT_FIX "Disable TPsot==TNsot fix. See https://github.com/uclouvain/openjpeg/issues/254." OFF)
 if(OPJ_DISABLE_TPSOT_FIX)

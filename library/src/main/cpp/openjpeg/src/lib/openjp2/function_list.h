@@ -31,7 +31,7 @@
 
 #ifndef OPJ_FUNCTION_LIST_H
 #define OPJ_FUNCTION_LIST_H
-
+#include "event.h"
 /**
  * @file function_list.h
  * @brief Implementation of a list of procedures.

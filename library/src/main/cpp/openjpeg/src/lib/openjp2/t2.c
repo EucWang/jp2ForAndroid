@@ -38,6 +38,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include "t2.h"
 #include "opj_includes.h"
 #include "opj_common.h"
 

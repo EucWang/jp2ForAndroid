@@ -39,6 +39,9 @@
 
 #ifndef OPJ_CIO_H
 #define OPJ_CIO_H
+
+#include "openjpeg.h"
+#include "event.h"
 /**
 @file cio.h
 @brief Implementation of a byte input-output process (CIO)

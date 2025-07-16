@@ -14,6 +14,7 @@ typedef unsigned int OPJ_BITFIELD;
 #include "j2k.h"
 #include "jp2.h"
 #include "opj_codec.h"
+#include "opj_malloc.h"
 
 #include <android/log.h>
 
@@ -170,7 +171,7 @@ static int imagetoargb(opj_image_t *image, image_data_t *outImage) {
         outImage->width = w;
         
         if (!outImage->pixels) {
-            LOGE("Could not allocate %d bytes of memory.\n", w * h * sizeof(int));
+            LOGE("Could not allocate %lu bytes of memory.\n", w * h * sizeof(int));
             return 1;
         }
         
@@ -251,7 +252,7 @@ static int imagetoargb(opj_image_t *image, image_data_t *outImage) {
         outImage->width = w;
         
         if (!outImage->pixels) {
-            LOGE("Could not allocate %d bytes of memory.\n", w * h * sizeof(int));
+            LOGE("Could not allocate %lu bytes of memory.\n", w * h * sizeof(int));
             return 1;
         }
 

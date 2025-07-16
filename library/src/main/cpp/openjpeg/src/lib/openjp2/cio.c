@@ -37,6 +37,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include "cio.h"
 #include "opj_includes.h"
 
 /* ----------------------------------------------------------------------- */

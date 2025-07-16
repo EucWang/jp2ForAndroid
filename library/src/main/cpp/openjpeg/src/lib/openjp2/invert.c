@@ -29,6 +29,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include "invert.h"
 #include "opj_includes.h"
 
 /**

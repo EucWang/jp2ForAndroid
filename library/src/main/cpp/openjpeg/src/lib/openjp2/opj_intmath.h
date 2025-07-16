@@ -36,6 +36,8 @@
  */
 #ifndef OPJ_INTMATH_H
 #define OPJ_INTMATH_H
+
+#include "t1.h"
 /**
 @file opj_intmath.h
 @brief Implementation of operations on integers (INT)

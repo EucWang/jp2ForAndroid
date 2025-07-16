@@ -40,6 +40,9 @@
 
 #ifndef OPJ_TGT_H
 #define OPJ_TGT_H
+#include "event.h"
+#include "openjpeg.h"
+#include "bio.h"
 /**
 @file tgt.h
 @brief Implementation of a tag-tree coder (TGT)

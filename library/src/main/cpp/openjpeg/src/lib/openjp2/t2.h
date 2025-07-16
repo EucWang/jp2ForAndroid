@@ -39,6 +39,8 @@
  */
 #ifndef OPJ_T2_H
 #define OPJ_T2_H
+#include "openjpeg.h"
+#include "tcd.h"
 /**
 @file t2.h
 @brief Implementation of a tier-2 coding (packetization of code-block data) (T2)

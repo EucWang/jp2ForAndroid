@@ -30,12 +30,17 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
+#include "openjpeg.h"
+#include "opj_codec.h"
+#include "opj_includes.h"
+#include "cio.h"
+#include "jp2.h"
+typedef unsigned int OPJ_BITFIELD;
 
 #ifdef _WIN32
 #include <windows.h>
 #endif /* _WIN32 */
 
-#include "opj_includes.h"
 
 
 /* ---------------------------------------------------------------------- */

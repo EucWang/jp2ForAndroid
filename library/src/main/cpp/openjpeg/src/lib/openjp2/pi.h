@@ -37,6 +37,13 @@
 
 #ifndef OPJ_PI_H
 #define OPJ_PI_H
+//#include "j2k.h"
+typedef struct opj_cp opj_cp_t;
+typedef struct opj_poc opj_poc_t;
+typedef struct opj_event_mgr  opj_event_mgr_t;
+#include "openjpeg.h"
+#include "j2k.h"
+
 /**
 @file pi.h
 @brief Implementation of a packet iterator (PI)
@@ -48,7 +55,6 @@ by some function in T2.C.
 
 /** @defgroup PI PI - Implementation of a packet iterator */
 /*@{*/
-
 /**
 FIXME DOC
 */

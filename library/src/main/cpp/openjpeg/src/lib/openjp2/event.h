@@ -32,6 +32,9 @@
  */
 #ifndef OPJ_EVENT_H
 #define OPJ_EVENT_H
+
+#include "openjpeg.h"
+
 /**
 @file event.h
 @brief Implementation of a event callback system

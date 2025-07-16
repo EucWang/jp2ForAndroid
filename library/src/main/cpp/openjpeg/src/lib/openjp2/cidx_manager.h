@@ -37,6 +37,7 @@
 #ifndef  CIDX_MANAGER_H_
 # define CIDX_MANAGER_H_
 
+#include "cio.h"
 #include "openjpeg.h"
 
 

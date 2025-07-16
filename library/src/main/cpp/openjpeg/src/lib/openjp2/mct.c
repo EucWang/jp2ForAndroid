@@ -47,6 +47,7 @@
 #include <smmintrin.h>
 #endif
 
+#include "mct.h"
 #include "opj_includes.h"
 
 /* <summary> */

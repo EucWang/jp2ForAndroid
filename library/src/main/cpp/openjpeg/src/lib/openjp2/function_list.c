@@ -29,6 +29,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include "function_list.h"
 #include "opj_includes.h"
 
 /**

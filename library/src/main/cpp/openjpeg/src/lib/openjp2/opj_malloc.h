@@ -32,6 +32,7 @@
 #ifndef OPJ_MALLOC_H
 #define OPJ_MALLOC_H
 
+
 #include <stddef.h>
 /**
 @file opj_malloc.h
@@ -93,14 +94,13 @@ Deallocates or frees a memory block.
 */
 void opj_free(void * m);
 
-#if defined(__GNUC__) && !defined(OPJ_SKIP_POISON)
-#pragma GCC poison malloc calloc realloc free
-#endif
+//#if defined(__GNUC__) && !defined(OPJ_SKIP_POISON)
+//#pragma GCC poison malloc calloc realloc free
+//#endif
 
 /* ----------------------------------------------------------------------- */
 /*@}*/
 
 /*@}*/
-
 #endif /* OPJ_MALLOC_H */
 

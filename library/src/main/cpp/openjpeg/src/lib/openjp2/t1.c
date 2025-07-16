@@ -48,9 +48,9 @@
 #include <emmintrin.h>
 #endif
 
-#if defined(__GNUC__)
-#pragma GCC poison malloc calloc realloc free
-#endif
+//#if defined(__GNUC__) && !defined(OPJ_SKIP_POISON)
+//#pragma GCC poison malloc calloc realloc free
+//#endif
 
 #include "t1_luts.h"
 

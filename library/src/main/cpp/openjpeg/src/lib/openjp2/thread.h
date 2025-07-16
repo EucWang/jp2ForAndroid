@@ -49,7 +49,10 @@ creation and thread pools that accept jobs.
 /*@{*/
 
 /** Opaque type for a mutex */
-typedef struct opj_mutex_t opj_mutex_t;
+typedef struct opj_mutex opj_mutex_t;
+
+/** Opaque type for a thread pool */
+typedef struct opj_thread_pool opj_thread_pool_t;
 
 /** Creates a mutex.
  * @return the mutex or NULL in case of error (can for example happen if the library
@@ -78,7 +81,7 @@ void opj_mutex_destroy(opj_mutex_t* mutex);
 /*@{*/
 
 /** Opaque type for a condition */
-typedef struct opj_cond_t opj_cond_t;
+typedef struct opj_cond opj_cond_t;
 
 /** Creates a condition.
  * @return the condition or NULL in case of error (can for example happen if the library
@@ -138,7 +141,7 @@ void opj_cond_destroy(opj_cond_t* cond);
 /*@{*/
 
 /** Opaque type for a thread handle */
-typedef struct opj_thread_t opj_thread_t;
+typedef struct opj_thread opj_thread_t;
 
 /** User function to execute in a thread
  * @param user_data user data provided with opj_thread_create()
@@ -164,7 +167,7 @@ void opj_thread_join(opj_thread_t* thread);
 /** @name Thread local storage */
 /*@{*/
 /** Opaque type for a thread local storage */
-typedef struct opj_tls_t opj_tls_t;
+typedef struct opj_tls opj_tls_t;
 
 /** Get a thread local value corresponding to the provided key.
  * @param tls thread local storage handle
@@ -191,8 +194,6 @@ OPJ_BOOL opj_tls_set(opj_tls_t* tls, int key, void* value,
 /** @name Thread pool */
 /*@{*/
 
-/** Opaque type for a thread pool */
-typedef struct opj_thread_pool_t opj_thread_pool_t;
 
 /** Create a new thread pool.
  * num_thread must nominally be >= 1 to create a real thread pool. If num_threads

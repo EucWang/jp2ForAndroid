@@ -31,6 +31,7 @@
 
 #ifndef OPJ_INVERT_H
 #define OPJ_INVERT_H
+#include "openjpeg.h"
 /**
 @file invert.h
 @brief Implementation of the matrix inversion

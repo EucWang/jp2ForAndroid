@@ -29,6 +29,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include "image.h"
 #include "opj_includes.h"
 
 opj_image_t* opj_image_create0(void)

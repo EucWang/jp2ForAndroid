@@ -38,6 +38,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include "dwt.h"
 #include <assert.h>
 
 #define OPJ_SKIP_POISON
@@ -56,9 +57,9 @@
 #include <immintrin.h>
 #endif
 
-#if defined(__GNUC__)
-#pragma GCC poison malloc calloc realloc free
-#endif
+//#if defined(__GNUC__) && !defined(OPJ_SKIP_POISON)
+//#pragma GCC poison malloc calloc realloc free
+//#endif
 
 /** @defgroup DWT DWT - Implementation of a discrete wavelet transform */
 /*@{*/

@@ -39,6 +39,8 @@
 
 #ifndef OPJ_MCT_H
 #define OPJ_MCT_H
+#include "openjpeg.h"
+#include "opj_includes.h"
 /**
 @file mct.h
 @brief Implementation of a multi-component transforms (MCT)

@@ -39,7 +39,7 @@
 #define OPJ_BIO_H
 
 #include <stddef.h> /* ptrdiff_t */
-
+#include "openjpeg.h"
 /**
 @file bio.h
 @brief Implementation of an individual bit input-output (BIO)
