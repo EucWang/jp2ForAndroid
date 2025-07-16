@@ -1,12 +1,11 @@
 # JP2 for Android
 ---------------------------
 An open-source JPEG-2000 image encoder/decoder for Android based on [OpenJPEG](http://www.openjpeg.org/) v2.4.0.
+fork from https://github.com/ThalesGroup/JP2ForAndroid.git， because origin author doesn't upgrade anymore，so I upgarde it the new gradle/ndk config.
 
-## Set up
-Add dependency to your `build.gradle`:
-```groovy
-implementation 'com.gemalto.jp2:jp2-android:1.0.3'
-```
+updated features:
+support 16k on Android 15
+gradle 8.13/  agp 8.11.1 / cmake 3.22.1 / ndk 29.0.13599879 rc2 / java 17
 
 ## Basic Usage
 Decoding an image:
